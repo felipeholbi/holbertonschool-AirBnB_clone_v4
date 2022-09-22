@@ -15,12 +15,9 @@ $(function () {
     }
   });
 
-  $.get('http://0.0.0.0:5001/api/v1/status/', (data, textStatus) => {
-    if (textStatus === 'success' || data.status === 'OK') {
-      $("div#api_status").addClass("available");
+  $.get('http://0.0.0.0:5001/api/v1/status/', function (data, statusText, xhr) {
+    if (xhr.status === 200) {
+      $('div#api_status').toggleClass('available default');
     }
-    else {
-      $("div#api_status").removeClass("available")
-    }
-  })
+  });
 });
